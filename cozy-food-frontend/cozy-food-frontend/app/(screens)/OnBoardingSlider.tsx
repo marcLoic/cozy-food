@@ -19,6 +19,9 @@ const OnBoardingSlider = () => {
   const x = useSharedValue(0);
   const flatListIndex = useSharedValue(0);
 
+  // useless code, can delete
+  const log = "";
+
   const onViewableItemsChanged = ({
     viewableItems,
   }: {
