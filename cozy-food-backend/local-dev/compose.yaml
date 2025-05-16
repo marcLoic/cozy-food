@@ -1,0 +1,25 @@
+services:
+  database:
+    image: "postgis/postgis"
+    platform: linux/amd64
+    environment:
+      - "POSTGRES_PASSWORD=secret"
+      - "POSTGRES_USER=dntech"
+      - "POSTGRES_DB=ambassador_suite_db"
+    user: postgres
+    ports:
+      - "5432:5432"
+    volumes:
+      - database:/var/lib/postgresql/data
+      - ./scripts/init-db.sql:/docker-entrypoint-initdb.d/init-db.sql
+    labels:
+      org.springframework.boot.service-connection: postgres
+  loki:
+    image: grafana/loki:2.8.2
+    ports:
+      - "3100:3100"
+    command: -config.file=/etc/loki/local-config.yaml
+
+volumes:
+  database:
+  tempo_data:
