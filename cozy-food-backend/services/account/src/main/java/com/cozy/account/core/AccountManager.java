@@ -2,20 +2,20 @@
  *  Copyright (c) Dntech 2023 - All rights reserved.
  */
 
-package com.cozy.account.core;
+package com.cozy.command.core;
 
 
-import com.cozy.account.config.AccountServiceProperties;
-import com.cozy.account.core.exception.AccountIntegrityViolationException;
-import com.cozy.account.core.exception.AccountNotFoundException;
-import com.cozy.account.core.model.entity.*;
-import com.cozy.account.core.model.payload.internal.field.AccountField;
-import com.cozy.account.core.model.payload.internal.field.RegisterUserRequest;
-import com.cozy.account.core.model.payload.internal.field.UpdateProfileRequest;
-import com.cozy.account.core.model.util.AccountUpdater;
-import com.cozy.account.core.port.in.AccountManagement;
-import com.cozy.account.core.port.out.AccountRepository;
-import com.cozy.account.core.port.out.ProfileRepository;
+import com.cozy.command.config.AccountServiceProperties;
+import com.cozy.command.core.exception.AccountIntegrityViolationException;
+import com.cozy.command.core.exception.AccountNotFoundException;
+import com.cozy.command.core.model.entity.*;
+import com.cozy.command.core.model.payload.internal.field.AccountField;
+import com.cozy.command.core.model.payload.internal.field.RegisterUserRequest;
+import com.cozy.command.core.model.payload.internal.field.UpdateProfileRequest;
+import com.cozy.command.core.model.util.AccountUpdater;
+import com.cozy.command.core.port.in.AccountManagement;
+import com.cozy.command.core.port.out.AccountRepository;
+import com.cozy.command.core.port.out.ProfileRepository;
 import com.cozy.shared.GenericObjectValidator;
 import com.cozy.shared.security.IdPUserManagementAdapter;
 import com.cozy.shared.security.SecurityContextUtil;

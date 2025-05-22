@@ -1,10 +1,10 @@
-package com.cozy.account.infra;
+package com.cozy.command.infra;
 
-import com.cozy.account.core.exception.AccountNotFoundException;
-import com.cozy.account.core.model.entity.Account;
-import com.cozy.account.core.port.out.AccountRepository;
-import com.cozy.account.infra.jpa.JpaAccountRepository;
-import com.cozy.account.infra.jpa.JpaPersonalInformationRepository;
+import com.cozy.command.core.exception.AccountNotFoundException;
+import com.cozy.command.core.model.entity.Account;
+import com.cozy.command.core.port.out.AccountRepository;
+import com.cozy.command.infra.jpa.JpaAccountRepository;
+import com.cozy.command.infra.jpa.JpaPersonalInformationRepository;
 import com.cozy.shared.db.DefaultTryCrudRepository;
 import io.vavr.control.Try;
 

@@ -1,6 +1,6 @@
-package com.cozy.account.infra.jpa;
+package com.cozy.command.infra.jpa;
 
-import com.cozy.account.core.model.entity.PersonalInformation;
+import com.cozy.command.core.model.entity.PersonalInformation;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;

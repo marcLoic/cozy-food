@@ -2,9 +2,9 @@
  *  Copyright (c) Dntech 2023 - All rights reserved.
  */
 
-package com.cozy.account.infra.jpa;
+package com.cozy.command.infra.jpa;
 
-import com.cozy.account.core.model.entity.Account;
+import com.cozy.command.core.model.entity.Account;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 

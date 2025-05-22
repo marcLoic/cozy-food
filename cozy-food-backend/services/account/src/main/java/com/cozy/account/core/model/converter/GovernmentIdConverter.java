@@ -1,6 +1,6 @@
-package com.cozy.account.core.model.converter;
+package com.cozy.command.core.model.converter;
 
-import com.cozy.account.core.model.entity.PersonalInformation;
+import com.cozy.command.core.model.entity.PersonalInformation;
 import com.cozy.shared.MapperUtils;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import jakarta.persistence.AttributeConverter;

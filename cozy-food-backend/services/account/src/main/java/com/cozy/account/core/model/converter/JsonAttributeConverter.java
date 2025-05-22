@@ -1,4 +1,4 @@
-package com.cozy.account.core.model.converter;
+package com.cozy.command.core.model.converter;
 
 import com.cozy.shared.MapperUtils;
 import com.fasterxml.jackson.core.type.TypeReference;

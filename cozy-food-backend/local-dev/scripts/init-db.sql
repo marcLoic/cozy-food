@@ -4,24 +4,8 @@ DO $$
             CREATE SCHEMA account_service;
         END IF;
 
-        IF NOT EXISTS (SELECT 1 FROM pg_namespace WHERE nspname = 'listing_service') THEN
-            CREATE SCHEMA listing_service;
-        END IF;
-
-        IF NOT EXISTS (SELECT 1 FROM pg_namespace WHERE nspname = 'booking_service') THEN
-            CREATE SCHEMA booking_service;
-        END IF;
-
-        IF NOT EXISTS (SELECT 1 FROM pg_namespace WHERE nspname = 'billing_service') THEN
-            CREATE SCHEMA billing_service;
-        END IF;
-
-        IF NOT EXISTS (SELECT 1 FROM pg_namespace WHERE nspname = 'communication_service') THEN
-            CREATE SCHEMA communication_service;
-        END IF;
-
-        IF NOT EXISTS (SELECT 1 FROM pg_namespace WHERE nspname = 'feedback_service') THEN
-            CREATE SCHEMA feedback_service;
+        IF NOT EXISTS (SELECT 1 FROM pg_namespace WHERE nspname = 'command_service') THEN
+            CREATE SCHEMA command_service;
         END IF;
 
         IF NOT EXISTS (SELECT 1 FROM pg_namespace WHERE nspname = 'system') THEN

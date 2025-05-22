@@ -2,7 +2,7 @@
  *  Copyright (c) Dntech 2023 - All rights reserved.
  */
 
-package com.cozy.account.core.model.payload.external;
+package com.cozy.command.core.model.payload.external;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;

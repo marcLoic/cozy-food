@@ -1,4 +1,4 @@
-package com.cozy.account.config;
+package com.cozy.command.config;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;

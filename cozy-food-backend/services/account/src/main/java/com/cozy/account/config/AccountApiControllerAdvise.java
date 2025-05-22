@@ -1,7 +1,7 @@
-package com.cozy.account.config;
+package com.cozy.command.config;
 
-import com.cozy.account.core.exception.AccountIntegrityViolationException;
-import com.cozy.account.core.exception.AccountNotFoundException;
+import com.cozy.command.core.exception.AccountIntegrityViolationException;
+import com.cozy.command.core.exception.AccountNotFoundException;
 import com.cozy.shared.security.IdentityProviderException;
 import jakarta.persistence.EntityNotFoundException;
 import jakarta.validation.ConstraintViolation;

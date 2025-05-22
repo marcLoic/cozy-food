@@ -1,7 +1,7 @@
-package com.cozy.account.core.port.in;
+package com.cozy.command.core.port.in;
 
-import com.cozy.account.core.model.entity.Profile;
-import com.cozy.account.core.model.payload.internal.field.UpdateProfileRequest;
+import com.cozy.command.core.model.entity.Profile;
+import com.cozy.command.core.model.payload.internal.field.UpdateProfileRequest;
 import io.vavr.control.Try;
 
 import java.util.List;

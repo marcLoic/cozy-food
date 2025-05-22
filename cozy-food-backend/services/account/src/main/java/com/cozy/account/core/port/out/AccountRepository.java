@@ -2,9 +2,9 @@
  *  Copyright (c) Dntech 2023 - All rights reserved.
  */
 
-package com.cozy.account.core.port.out;
+package com.cozy.command.core.port.out;
 
-import com.cozy.account.core.model.entity.Account;
+import com.cozy.command.core.model.entity.Account;
 import io.vavr.control.Try;
 
 import java.util.List;
