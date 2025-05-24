@@ -1,4 +1,4 @@
-package com.cozy.account.core.exception;
+package com.cozy.command.core.exception;
 
 import com.cozy.account.core.model.payload.internal.field.AccountField;
 import jakarta.validation.ConstraintViolation;
