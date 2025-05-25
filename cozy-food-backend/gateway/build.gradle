@@ -11,6 +11,7 @@ dependencies {
 
     implementation project(":shared")
     implementation project(':services:account')
+    implementation project(':services:command')
 
     implementation 'org.springframework.boot:spring-boot-starter'
     implementation "com.github.kagkarlsson:db-scheduler-spring-boot-starter:${ver.dbScheduler}"

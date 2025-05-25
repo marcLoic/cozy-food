@@ -1,4 +1,4 @@
-package com.cozy.account.core.model.payload.internal.field;
+package com.cozy.command.core.model.payload.internal.field;
 
 import jakarta.validation.constraints.NotBlank;
 import lombok.AllArgsConstructor;
@@ -10,7 +10,7 @@ import lombok.NoArgsConstructor;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-public final class AboutField implements AccountField {
+public final class DescriptionField implements CommandField {
     @NotBlank
-    private String about;
+    private String description;
 }

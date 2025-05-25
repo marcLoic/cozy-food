@@ -1,4 +1,4 @@
-package com.cozy.command.core.model.entity;
+package com.cozy.account.core.model.entity;
 
 import lombok.Getter;
 

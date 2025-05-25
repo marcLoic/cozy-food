@@ -1,13 +1,14 @@
-package com.cozy.account.core.model.payload.internal.field;
+package com.cozy.command.core.model.payload.internal.field;
 
 import lombok.Data;
 
 import java.time.LocalDate;
+import java.time.ZonedDateTime;
 
 @Data
-public class RegisterUserRequest {
-    private String email;
-    private String firstName;
-    private String lastName;
-    private LocalDate birthDate;
+public class CreateCommandRequest {
+    private String description;
+    private Integer quantity;
+    private String accountId;
+    private LocalDate dateOfCommand;
 }

@@ -1,4 +1,4 @@
-package com.cozy.command.core.model.payload.internal.field;
+package com.cozy.account.core.model.payload.internal.field;
 
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Past;

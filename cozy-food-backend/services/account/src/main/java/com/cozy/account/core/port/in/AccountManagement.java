@@ -2,12 +2,12 @@
  *  Copyright (c) Dntech 2023 - All rights reserved.
  */
 
-package com.cozy.command.core.port.in;
+package com.cozy.account.core.port.in;
 
-import com.cozy.command.core.model.entity.Account;
-import com.cozy.command.core.model.entity.PersonalInformation;
-import com.cozy.command.core.model.payload.internal.field.AccountField;
-import com.cozy.command.core.model.payload.internal.field.RegisterUserRequest;
+import com.cozy.account.core.model.entity.Account;
+import com.cozy.account.core.model.entity.PersonalInformation;
+import com.cozy.account.core.model.payload.internal.field.AccountField;
+import com.cozy.account.core.model.payload.internal.field.RegisterUserRequest;
 import io.vavr.control.Try;
 import org.springframework.security.access.prepost.PreAuthorize;
 
@@ -52,6 +52,8 @@ public interface AccountManagement extends ProfileManagement {
     Try<Account> findByIdpUserId(String idpUserId);
 
     Try<Account> getAuthenticatedAccount();
+
+    Try<Account> isAuthenticatedUserOwnerOrAdmin(Long accountId);
 
     Try<Boolean> checkEmailUniqueness(String email);
 

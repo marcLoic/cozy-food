@@ -1,4 +1,4 @@
-package com.cozy.command.config;
+package com.cozy.account.config;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.AllArgsConstructor;

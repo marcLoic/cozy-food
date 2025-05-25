@@ -1,6 +1,6 @@
-package com.cozy.command.core.exception;
+package com.cozy.account.core.exception;
 
-import com.cozy.command.core.model.payload.internal.field.AccountField;
+import com.cozy.account.core.model.payload.internal.field.AccountField;
 import jakarta.validation.ConstraintViolation;
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;

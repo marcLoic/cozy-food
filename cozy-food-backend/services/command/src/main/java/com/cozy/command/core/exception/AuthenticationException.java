@@ -1,4 +1,4 @@
-package com.cozy.account.core.exception;
+package com.cozy.command.core.exception;
 
 import lombok.experimental.StandardException;
 

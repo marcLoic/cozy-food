@@ -1,139 +1,39 @@
 package com.cozy.core.adapter;
 
-import com.cozy.account.core.model.entity.Account;
-import com.cozy.account.core.model.entity.PersonalInformation;
-import com.cozy.account.core.model.entity.Profile;
-import com.cozy.account.core.model.payload.internal.field.AccountField;
-import com.cozy.account.core.model.payload.internal.field.RegisterUserRequest;
-import com.cozy.account.core.model.payload.internal.field.UpdateProfileRequest;
-import com.cozy.account.core.port.in.AccountManagement;
-import com.cozy.account.core.port.in.ProfileManagement;
+import com.cozy.command.core.model.entity.Command;
+import com.cozy.command.core.model.payload.internal.field.CommandField;
+import com.cozy.command.core.model.payload.internal.field.CreateCommandRequest;
+import com.cozy.command.core.port.in.CommandManagement;
 import com.cozy.infra.ServicesFacade;
 import io.vavr.control.Try;
-import jakarta.persistence.EntityNotFoundException;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 
 import java.util.List;
-import java.util.Objects;
-import java.util.Set;
 
 @Slf4j
 @RequiredArgsConstructor
-public class AccountService implements AccountManagement, ProfileManagement {
-    private final ServicesFacade servicesFacade;
+public class CommandService implements CommandManagement {
+    private final ServicesFacade serviceFacade;
 
     @Override
-    public Try<Account> register(String userId, RegisterUserRequest request) {
-        return this.servicesFacade.accountService()
-                .register(userId, request);
+    public Try<Command> createCommand(Long userId, CreateCommandRequest request) {
+        return this.serviceFacade.commandService()
+                .createCommand(userId, request);
     }
 
     @Override
-    public Try<Account> me(String userId) {
-        return this.servicesFacade.accountService()
-                .me(userId);
+    public Try<List<Command>> listCommands() {
+        return this.serviceFacade.commandService().listCommands();
     }
 
     @Override
-    public Try<Account> findById(Long accountId) {
-        return this.servicesFacade.accountService()
-                .findById(accountId);
+    public Try<Command> findCommandById(Long commandId) {
+        return this.serviceFacade.commandService().findCommandById(commandId);
     }
 
     @Override
-    public Try<Void> makeUserHost(Long accountId) {
-        return this.servicesFacade.accountService()
-                .makeUserHost(accountId);
+    public Try<Command> patchCommand(Long commandId, List<CommandField> commandFields) {
+        return this.serviceFacade.commandService().patchCommand(commandId, commandFields);
     }
-
-    @Override
-    public Try<List<Account>> findAll() {
-        return this.servicesFacade.accountService()
-                .findAll();
-    }
-
-    @Override
-    public Try<List<Account>> findAll(Set<Long> accountIds) {
-        return this.servicesFacade.accountService()
-                .findAll(accountIds);
-    }
-
-    @Override
-    public Try<Void> delete(Long accountId) {
-        return this.servicesFacade.accountService()
-                .delete(accountId);
-    }
-
-    @Override
-    public Try<Void> suspend(Long accountId) {
-        return this.servicesFacade.accountService()
-                .suspend(accountId);
-    }
-
-    @Override
-    public Try<Account> patchAccount(Long accountId, List<AccountField> accountFields) {
-        return this.servicesFacade.accountService()
-                .patchAccount(accountId, accountFields);
-    }
-
-    @Override
-    public Try<Boolean> isUserAllowedToCreateListing(Long accountId) {
-        return this.servicesFacade.accountService()
-                .isUserAllowedToCreateListing(accountId);
-    }
-
-    @Override
-    public Try<Boolean> doesUserExists(Long entityId) {
-        return this.servicesFacade.accountService()
-                .findById(entityId)
-                .map(Objects::nonNull)
-                .recoverWith(EntityNotFoundException.class, e -> Try.success(false));
-    }
-
-    @Override
-    public Try<Account> findByIdpUserId(String idpUserId) {
-        return this.servicesFacade.accountService()
-                .findByIdpUserId(idpUserId);
-    }
-
-    @Override
-    public Try<Account> getAuthenticatedAccount() {
-        return this.servicesFacade.accountService()
-                .getAuthenticatedAccount();
-    }
-
-    @Override
-    public Try<Boolean> checkEmailUniqueness(String email) {
-        return this.servicesFacade.accountService().checkEmailUniqueness(email);
-    }
-
-    @Override
-    public Try<PersonalInformation.GovernmentId> verifyIdentityInformation(Long accountId, PersonalInformation.GovernmentIdStatus status, String rejectionReason) {
-        return this.servicesFacade.accountService().verifyIdentityInformation(accountId, status, rejectionReason);
-    }
-
-    @Override
-    public Try<Void> suspendAccount(Long accountId) {
-        return this.servicesFacade.accountService().suspendAccount(accountId);
-    }
-
-    @Override
-    public Try<Profile> findProfileById(Long profileId) {
-        return this.servicesFacade.accountService()
-                .findProfileById(profileId);
-    }
-
-    @Override
-    public Try<List<Profile>> getAllProfiles() {
-        return this.servicesFacade.accountService()
-                .getAllProfiles();
-    }
-
-    @Override
-    public Try<Profile> updateProfileById(Long profileId, UpdateProfileRequest request) {
-        return this.servicesFacade.accountService()
-                .updateProfileById(profileId, request);
-    }
-
 }

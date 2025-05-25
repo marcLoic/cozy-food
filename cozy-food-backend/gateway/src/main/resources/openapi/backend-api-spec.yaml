@@ -419,6 +419,153 @@ paths:
               schema:
                 $ref: "#/components/schemas/ProblemDetail"
 
+  #################################################
+  #               Command                         #
+  #################################################
+  /command/createcommand:
+    post:
+      tags:
+        - BackendApi
+      summary: Create a command.
+      operationId: createCommand
+      requestBody:
+        description: The fields needed for a command to be created.
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/CreateCommandRequest"
+      responses:
+        "201":
+          description: Command successfully created.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Command"
+        "500":
+          description: Unknown error
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ProblemDetail"
+
+  /command:
+    get:
+      tags:
+        - BackendApi
+      summary: Get all registered commands.
+      operationId: getAllCommands
+      responses:
+        "200":
+          description: List of all commands
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/Command"
+        "401":
+          description: User is not authenticated
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ProblemDetail"
+        "500":
+          description: Unknown error
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ProblemDetail"
+
+  /command/{commandId}:
+    get:
+      tags:
+        - BackendApi
+      summary: Find command by Id
+      operationId: findCommandById
+      parameters:
+        - in: path
+          name: commandId
+          required: true
+          schema:
+            type: integer
+            format: int64
+      responses:
+        "200":
+          description: Command with the Id given in request path
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Command"
+        "401":
+          description: User is not authenticated
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ProblemDetail"
+        "404":
+          description: No Command with the ID passed in request path was found
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ProblemDetail"
+        "500":
+          description: Unknown error
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ProblemDetail"
+    patch:
+      tags:
+        - BackendApi
+      summary: Update a command by its internal ID
+      operationId: updateCommand
+      parameters:
+        - name: commandId
+          in: path
+          required: true
+          schema:
+            type: integer
+            format: int64
+        - name: accountId
+          in: query
+          required: true
+          schema:
+            type: integer
+            format: int64
+      requestBody:
+        description: The fields of the account that need to be updated.
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/CommandPatchRequest"
+      responses:
+        "200":
+          description: The updated command
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Command"
+        "400":
+          description: Invalid request
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ProblemDetail"
+        "401":
+          description: User is not authenticated
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ProblemDetail"
+        "500":
+          description: Unknown error
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ProblemDetail"
+
 components:
   schemas:
     #################################################
@@ -858,3 +1005,82 @@ components:
           type: string
         type:
           type: string
+
+    #################################################
+    #               Command                         #
+    #################################################
+    Command:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int64
+        description:
+          type: string
+        quantity:
+          type: integer
+        dateOfCommand:
+          type: date
+        accountId:
+          type: integer
+          format: int64
+    CreateCommandRequest:
+      type: object
+      required:
+        - description
+        - quantity
+        - accountId
+        - dateOfCommand
+      properties:
+        description:
+          type: string
+        quantity:
+          type: integer
+        accountId:
+          type: integer
+          format: int64
+        dateOfCommand:
+          type: string
+          format: date
+    CommandPatchRequest:
+      type: object
+      required: [ ]
+      properties:
+        description:
+          $ref: "#/components/schemas/CommandPatchDescription"
+        quantity:
+          $ref: "#/components/schemas/CommandPatchQuantity"
+        dateOfCommand:
+          $ref: "#/components/schemas/CommandPatchDateOfCommand"
+        accountId:
+          $ref: "#/components/schemas/CommandPatchAccountId"
+    CommandPatchDescription:
+      type: object
+      required:
+        - description
+      properties:
+        description:
+          type: string
+    CommandPatchQuantity:
+      type: object
+      required:
+        - quantity
+      properties:
+        quantity:
+          type: integer
+    CommandPatchDateOfCommand:
+      type: object
+      required:
+        - dateOfCommand
+      properties:
+        dateOfCommand:
+          type: string
+          format: date
+    CommandPatchAccountId:
+      type: object
+      required:
+        - accountId
+      properties:
+        accountId:
+          type: integer
+          format: int64

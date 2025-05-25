@@ -1,7 +1,7 @@
-package com.cozy.account.core.exception;
+package com.cozy.command.core.exception;
 
 import lombok.experimental.StandardException;
 
 @StandardException
-public class AccountNotFoundException extends RuntimeException{
+public class CommandNotFoundException extends RuntimeException{
 }

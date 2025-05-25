@@ -1,22 +1,12 @@
 --liquibase formatted sql
 
---changeset dtn1999:create_initial_tables
-DROP TABLE IF EXISTS COMMAND;
+--changeset dtn1999:adding_of_columns_deleted_created_at_updated_at
+--comment: Insertion of new columns
 
---comment: Table command
+ALTER TABLE command
+    ADD COLUMN deleted BOOLEAN DEFAULT FALSE,
+    ADD COLUMN created_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    ADD COLUMN updated_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP;
 
-CREATE TABLE COMMAND
-(
-    id                      BIGSERIAL    NOT NULL,
-    command_id              VARCHAR(255) NOT NULL UNIQUE,
-    description             VARCHAR(255) NOT NULL,
-    quantity                INTEGER NOT NULL,
-    date_of_command         TIMESTAMP    NOT NULL DEFAULT CURRENT_TIMESTAMP,
-    account_id              BIGINT       NOT NULL,
-
---  Constraints
-    PRIMARY KEY (id)
-);
-
---rollback DROP TABLE COMMAND;
+--rollback ALTER TABLE command DROP COLUMN deleted, DROP COLUMN create_at, DROP COLUMN updated_at;
 

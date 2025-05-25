@@ -104,6 +104,11 @@ public class AccountService implements AccountManagement, ProfileManagement {
     }
 
     @Override
+    public Try<Account> isAuthenticatedUserOwnerOrAdmin(Long accountId) {
+        return this.servicesFacade.accountService().isAuthenticatedUserOwnerOrAdmin(accountId);
+    }
+
+    @Override
     public Try<Boolean> checkEmailUniqueness(String email) {
         return this.servicesFacade.accountService().checkEmailUniqueness(email);
     }

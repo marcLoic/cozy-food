@@ -1,7 +1,9 @@
 package com.cozy.config;
 
 import com.cozy.account.core.port.in.AccountManagement;
+import com.cozy.command.core.port.in.CommandManagement;
 import com.cozy.core.adapter.AccountService;
+import com.cozy.core.adapter.CommandService;
 import com.cozy.infra.ServicesFacade;
 import com.cozy.shared.ServiceConfigurationProperties;
 import com.cozy.shared.SystemConfigurationProperties;
@@ -63,10 +65,15 @@ public class MasterConfiguration {
     }
 
     @Bean
+    public CommandService commandService(ServicesFacade servicesFacade) {
+        return new CommandService(servicesFacade);
+    }
+
+    @Bean
     public ServicesFacade servicesFacade(
-            AccountManagement accountService
+            AccountManagement accountService, CommandManagement commandService
     ) {
-        return new ServicesFacade(accountService);
+        return new ServicesFacade(accountService, commandService);
     }
 
     @Bean

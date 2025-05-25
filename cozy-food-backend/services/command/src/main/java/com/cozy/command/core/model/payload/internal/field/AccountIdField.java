@@ -10,7 +10,7 @@ import lombok.NoArgsConstructor;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-public final class QuantityField implements CommandField {
+public final class AccountIdField implements CommandField {
     @NotBlank
-    private String quantity;
+    private Long accountId;
 }

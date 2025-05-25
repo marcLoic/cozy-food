@@ -1,8 +1,8 @@
-package com.cozy.command.core.model.util;
+package com.cozy.account.core.model.util;
 
-import com.cozy.command.core.model.entity.Account;
-import com.cozy.command.core.model.entity.PersonalInformation;
-import com.cozy.command.core.model.payload.internal.field.*;
+import com.cozy.account.core.model.entity.Account;
+import com.cozy.account.core.model.entity.PersonalInformation;
+import com.cozy.account.core.model.payload.internal.field.*;
 import com.cozy.shared.DateUtils;
 
 public record AccountUpdater(Account account) {

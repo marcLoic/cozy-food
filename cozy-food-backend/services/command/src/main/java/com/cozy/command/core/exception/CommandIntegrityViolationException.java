@@ -1,6 +1,6 @@
 package com.cozy.command.core.exception;
 
-import com.cozy.account.core.model.payload.internal.field.AccountField;
+import com.cozy.command.core.model.payload.internal.field.CommandField;
 import jakarta.validation.ConstraintViolation;
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
@@ -9,6 +9,6 @@ import java.util.Set;
 
 @Getter
 @RequiredArgsConstructor(staticName = "with")
-public class AccountIntegrityViolationException extends RuntimeException {
-    private final Set<ConstraintViolation<AccountField>> violations;
+public class CommandIntegrityViolationException extends RuntimeException {
+    private final Set<ConstraintViolation<CommandField>> violations;
 }

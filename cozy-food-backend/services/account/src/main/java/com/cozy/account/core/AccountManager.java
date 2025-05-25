@@ -2,20 +2,20 @@
  *  Copyright (c) Dntech 2023 - All rights reserved.
  */
 
-package com.cozy.command.core;
+package com.cozy.account.core;
 
 
-import com.cozy.command.config.AccountServiceProperties;
-import com.cozy.command.core.exception.AccountIntegrityViolationException;
-import com.cozy.command.core.exception.AccountNotFoundException;
-import com.cozy.command.core.model.entity.*;
-import com.cozy.command.core.model.payload.internal.field.AccountField;
-import com.cozy.command.core.model.payload.internal.field.RegisterUserRequest;
-import com.cozy.command.core.model.payload.internal.field.UpdateProfileRequest;
-import com.cozy.command.core.model.util.AccountUpdater;
-import com.cozy.command.core.port.in.AccountManagement;
-import com.cozy.command.core.port.out.AccountRepository;
-import com.cozy.command.core.port.out.ProfileRepository;
+import com.cozy.account.config.AccountServiceProperties;
+import com.cozy.account.core.exception.AccountIntegrityViolationException;
+import com.cozy.account.core.exception.AccountNotFoundException;
+import com.cozy.account.core.model.entity.*;
+import com.cozy.account.core.model.payload.internal.field.AccountField;
+import com.cozy.account.core.model.payload.internal.field.RegisterUserRequest;
+import com.cozy.account.core.model.payload.internal.field.UpdateProfileRequest;
+import com.cozy.account.core.model.util.AccountUpdater;
+import com.cozy.account.core.port.in.AccountManagement;
+import com.cozy.account.core.port.out.AccountRepository;
+import com.cozy.account.core.port.out.ProfileRepository;
 import com.cozy.shared.GenericObjectValidator;
 import com.cozy.shared.security.IdPUserManagementAdapter;
 import com.cozy.shared.security.SecurityContextUtil;
@@ -158,6 +158,21 @@ public class AccountManager implements AccountManagement {
     public Try<Account> getAuthenticatedAccount() {
         return this.getAuthenticatedUserId()
                 .flatMap(this.accountRepository::findByUserId);
+    }
+
+    @Override
+    public Try<Account> isAuthenticatedUserOwnerOrAdmin(Long accountId) {
+        return this.getAuthenticatedUserId()
+                .flatMap(userId -> this.accountRepository.findById(accountId)
+                        .map(account -> {
+                            boolean isOwner = account.getId().equals(accountId);
+                            boolean isAdmin = account.getRole().equals(Account.Role.ADMIN);
+                            if (!isOwner && !isAdmin) {
+                                throw new AuthorizationServiceException("User is not owner of the account");
+                            }
+                            return account;
+                        })
+                );
     }
 
     @Override
@@ -320,18 +335,13 @@ public class AccountManager implements AccountManagement {
                 );
     }
 
-    private Try<Account> isAuthenticatedUserOwnerOrAdmin(Long accountId) {
-        return this.getAuthenticatedUserId()
-                .flatMap(userId -> this.accountRepository.findById(accountId)
-                        .map(account -> {
-                            boolean isOwner = account.getId().equals(accountId);
-                            boolean isAdmin = account.getRole().equals(Account.Role.ADMIN);
-                            if (!isOwner && !isAdmin) {
-                                throw new AuthorizationServiceException("User is not owner of the account");
-                            }
-                            return account;
-                        })
-                );
+    private Try<Void> validate(List<AccountField> patchedFields) {
+        Set<ConstraintViolation<AccountField>> violations = GenericObjectValidator.validate(patchedFields);
+        if (!violations.isEmpty()) {
+            return Try.failure(AccountIntegrityViolationException.with(violations));
+        }
+        return Try.run(() -> {
+        });
     }
 
     private Try<Account> admin(Long accountId) {
@@ -345,15 +355,6 @@ public class AccountManager implements AccountManagement {
                             return account;
                         })
                 );
-    }
-
-    private Try<Void> validate(List<AccountField> patchedFields) {
-        Set<ConstraintViolation<AccountField>> violations = GenericObjectValidator.validate(patchedFields);
-        if (!violations.isEmpty()) {
-            return Try.failure(AccountIntegrityViolationException.with(violations));
-        }
-        return Try.run(() -> {
-        });
     }
 
     private Try<Account> assignRoleToUser(String userId, Account account, Account.Role role) {

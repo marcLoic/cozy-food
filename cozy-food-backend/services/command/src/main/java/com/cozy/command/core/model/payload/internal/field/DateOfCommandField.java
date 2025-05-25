@@ -6,11 +6,12 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.time.LocalDate;
+
 @Data
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-public final class QuantityField implements CommandField {
-    @NotBlank
-    private String quantity;
+public final class DateOfCommandField implements CommandField {
+    private LocalDate dateOfCommand;
 }

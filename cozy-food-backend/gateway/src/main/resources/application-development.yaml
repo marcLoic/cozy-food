@@ -68,46 +68,14 @@ services:
         timezone: "Berlin/Europe"
         currency: "EUR"
 
-  listing:
-    name: listing
+  command:
     enabled: true
+    name: command
     liquibase:
-      change-log: classpath:db/listing/db.changelog-master.xml
-      default-schema: listing_service
-      liquibase-schema: listing_service
-    domain:
-      availability:
-        defaultNumberOfCalendar: 4
+      change-log: classpath:db/command/db.changelog-master.xml
+      default-schema: command_service
+      liquibase-schema: command_service
 
-  billing:
-    name: billing
-    enabled: true
-    liquibase:
-      change-log: classpath:db/billing/db.changelog-master.xml
-      default-schema: billing_service
-      liquibase-schema: billing_service
-    stripe:
-      api-key: ${STRIPE_API_KEY}
-      currency: ${STRIPE_CURRENCY:EUR}
-      success-callback-url: ${STRIPE_SUCCESS_URL:http://localhost:3000/en/account/settings/billing}
-
-  booking:
-    name: booking
-    enabled: true
-    liquibase:
-      change-log: classpath:db/booking/db.changelog-master.xml
-      default-schema: booking_service
-      liquibase-schema: booking_service
-    domain:
-      currency: ${BOOKING_CURRENCY:EUR}
-
-  communication:
-    name: communication
-    enabled: true
-    liquibase:
-      change-log: classpath:db/communication/db.changelog-master.xml
-      default-schema: communication_service
-      liquibase-schema: communication_service
 
 db-scheduler-log:
   enabled: true

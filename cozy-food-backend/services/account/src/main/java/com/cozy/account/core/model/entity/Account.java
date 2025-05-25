@@ -2,9 +2,9 @@
  *  Copyright (c) Dntech 2023 - All rights reserved.
  */
 
-package com.cozy.command.core.model.entity;
+package com.cozy.account.core.model.entity;
 
-import com.cozy.command.core.model.converter.SettingsConverter;
+import com.cozy.account.core.model.converter.SettingsConverter;
 import com.cozy.shared.db.BaseEntity;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;

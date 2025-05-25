@@ -244,7 +244,7 @@ public class AccountsServiceApi implements AccountsApi, ProfilesApi {
             return patchedFields;
         }
 
-        AboutField map(AccountPatchAboutDto aboutDto);
+        AboutField  map(AccountPatchAboutDto aboutDto);
 
         AddressField map(AccountPatchAccountAddressDto addressDto);
 

@@ -1,4 +1,4 @@
-package com.cozy.command.core.model;
+package com.cozy.command.core.model.entity;
 
 
 import com.cozy.shared.db.BaseEntity;
@@ -10,23 +10,17 @@ import lombok.Setter;
 import lombok.experimental.SuperBuilder;
 import org.hibernate.annotations.CreationTimestamp;
 
+import java.time.LocalDate;
 import java.time.ZonedDateTime;
 
 @Getter
 @Setter
+@Entity
 @SuperBuilder
 @AllArgsConstructor
 @NoArgsConstructor
 @Table(name = "command", schema = "command_service")
 public class Command extends BaseEntity {
-
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id", nullable = false)
-    private Long id;
-
-    @Column(name = "command_id", nullable = false, unique = true)
-    private String commandId;
 
     @Column(name = "description", nullable = false)
     private String description;
@@ -36,7 +30,7 @@ public class Command extends BaseEntity {
 
     @CreationTimestamp
     @Column(name = "date_of_command", nullable = false, columnDefinition = "TIMESTAMP DEFAULT CURRENT_TIMESTAMP")
-    private ZonedDateTime dateOfCommand;
+    private LocalDate dateOfCommand;
 
     @Column(name = "account_id", nullable = false)
     private Long accountId;
