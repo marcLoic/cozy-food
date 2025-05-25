@@ -1,7 +1,7 @@
 {
   "expo": {
-    "name": "clickmart-react-native",
-    "slug": "clickmart-react-native",
+    "name": "cozy-food-frondend",
+    "slug": "cozy-food-frondend",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/images/icon.png",
