@@ -27,7 +27,7 @@
       "package": "com.sakibb.clickmartreactnative",
       "config":{
         "googleMaps":{
-          "apiKey":"AIzaSyB4vXIhcyycHK1bfNNFOY_oroC1kqVi-uk"
+          "apiKey":"process.env.GOOGLE_MAPS_API_KEY"
         }
       }
     },
